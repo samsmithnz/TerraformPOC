@@ -25,8 +25,8 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_SP }}
     - run: |
-        $secrets = ${{ secrets.AZURE_SP }}  
-        $secrets = $secrets -replace "`n",", " -replace "`r",", "
+        $secrets = "${{ secrets.AZURE_SP }}"
+        #$secrets = $secrets -replace "`n",", " -replace "`r",", "
         $secretsObj = ($secrets | ConvertFrom-Json)
         $secretsObj
         Write-Host "Sub: " $secretsObj.subscriptionId
