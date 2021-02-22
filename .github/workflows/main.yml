@@ -26,8 +26,8 @@ jobs:
         creds: ${{ secrets.AZURE_SP }}
     - run: |
         Write-Host "Secret: " ${{ secrets.AZURE_SP }}        
-        #Write-Host "Sub: " ${{ fromJson(secrets.AZURE_SP).subscriptionId }}
-        Write-Host "Sub: " (${{ secrets.AZURE_SP }} | ConvertFrom-Json).subscriptionId
+        Write-Host "Sub: " ${{ fromJson(secrets.AZURE_SP).subscriptionId }}
+        #Write-Host "Sub: " (${{ secrets.AZURE_SP }} | ConvertFrom-Json).subscriptionId
     - name: Install Terraform 0.12.3
       uses: hashicorp/setup-terraform@v1
     - name: 'Terraform : azure init'
