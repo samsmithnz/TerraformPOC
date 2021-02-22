@@ -25,7 +25,8 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_SP }}
     - run: |
-        $secrets = ${{ secrets.AZURE_SP }}        
+        $secrets = ${{ secrets.AZURE_SP }}  
+        $secrets = $secrets -replace "`n",", " -replace "`r",", "
         Write-Host "Sub: " ($secrets | ConvertFrom-Json).subscriptionId
     - name: Install Terraform 0.12.3
       uses: hashicorp/setup-terraform@v1
