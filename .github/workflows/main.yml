@@ -24,17 +24,11 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_SP }}
-    - run: |
-        $secrets = "${{ secrets.AZURE_SP }}"
-        #$secrets = $secrets -replace "`n",", " -replace "`r",", "
-        $secretsObj = ($secrets | ConvertFrom-Json)
-        $secretsObj
-        Write-Host "Sub: " $secretsObj.subscriptionId
     - name: Install Terraform 0.12.3
       uses: hashicorp/setup-terraform@v1
     - name: 'Terraform : azure init'
-      run: terraform init
+      run: terraform init -var="client_secret=${{ secrets.clientSecret }}"
     - name: 'Terraform : azure plan'
-      run: terraform plan -var-file=""terraform.tfvars""
+      run: terraform plan -var-file=""terraform.tfvars"" -var="client_secret=${{ secrets.clientSecret }}"
     - name: 'Terraform : azure validate and apply'
-      run: terraform apply -var-file=""terraform.tfvars""
+      run: terraform apply -var-file=""terraform.tfvars""  -var="client_secret=${{ secrets.clientSecret }}"
