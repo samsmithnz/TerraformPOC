@@ -27,25 +27,4 @@ jobs:
     - name: 'Terraform : azure plan'
       run: terraform plan -var="client_secret=${{ secrets.clientSecret }}"
     - name: 'Terraform : azure apply'
-      run: terraform apply -var="client_secret=${{ secrets.clientSecret }}"
-      
-    - name: 'Terraform : azure init'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: 0.12.13
-        tf_actions_subcommand: "init"
-      if: 0==1
-    - name: 'Terraform : azure plan'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: 0.12.13
-        tf_actions_subcommand: "plan"
-        args: '-var="client_secret=${{ secrets.clientSecret }}"'
-      if: 0==1
-    - name: 'Terraform : azure apply'
-      uses: hashicorp/terraform-github-actions@master
-      with:
-        tf_actions_version: 0.12.13
-        tf_actions_subcommand: "apply"
-        args: '-var="client_secret=${{ secrets.clientSecret }}"'
-      if: 0==1
+      run: terraform apply -auto-approve -var="client_secret=${{ secrets.clientSecret }}"
