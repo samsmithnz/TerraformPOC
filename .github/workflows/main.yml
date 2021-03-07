@@ -34,8 +34,7 @@ jobs:
       with:
         tf_actions_version: 0.12.13
         tf_actions_subcommand: "plan"
-        args: -var="client_secret=${{ secrets.clientSecret }}"
-        
+        args: -var="client_secret=${{ secrets.CLIENTSECRET }}"       
     - name: 'Terraform : azure validate and apply'
       uses: hashicorp/terraform-github-actions@master
       with:
