@@ -1,7 +1,4 @@
-variable "prefix" {
-  description = "The prefix which should be used for all resources in this example"
-}
-
-variable "location" {
-  description = "The Azure Region in which all resources in this example should be created."
-} 
+variable "sub" { type = string }
+variable "client_secret" { type = string }
+variable "client_id" { type = string }
+variable "tenant_id" { type = string }
